@@ -1,3 +1,9 @@
+# Training pipeline for the bike-sharing project.
+# It splits the data 70/15/15, compares three linear models (LinearRegression,
+# Ridge and Lasso) logging every run to MLflow, picks the best one by
+# validation RMSE, retrains it on train+validation, checks it on the test set,
+# and saves the winning pipeline to models/best_model.pkl so predict.py can use it.
+
 import pandas as pd
 import numpy as np
 import joblib

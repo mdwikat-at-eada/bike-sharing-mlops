@@ -1,3 +1,9 @@
+# Data preparation for the bike-sharing project.
+# This file loads the raw daily data, drops the columns we cannot use, and
+# builds the transformer that turns the 11 features into model-ready numbers:
+# one-hot encoding for the categories and polynomial terms for the weather
+# numbers. It does not train anything - train.py uses these functions.
+
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, PolynomialFeatures
