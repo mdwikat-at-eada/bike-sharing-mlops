@@ -31,6 +31,12 @@ def get_X_y(df):
     return X, y
 
 
+# save the clean dataset (the 11 features + cnt, after dropping the unused columns)
+# so there is a visible record of the data we actually model on
+def save_processed_data(df):
+    df.to_csv(config.PROCESSED_DATA_PATH, index=False)
+
+
 # one-hot encode the categories, add polynomial terms to the numbers,
 # and let the rest (yr, holiday, workingday) pass through untouched
 def build_preprocessor():

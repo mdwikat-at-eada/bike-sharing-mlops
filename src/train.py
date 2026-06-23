@@ -15,7 +15,7 @@ from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 from src import config
-from src.data_preprocessing import load_data, get_X_y, build_preprocessor
+from src.data_preprocessing import load_data, get_X_y, build_preprocessor, save_processed_data
 
 
 # the alphas (regularization strength) we try for Ridge and Lasso
@@ -71,8 +71,9 @@ def log_model(name, model, X_train, y_train, X_val, y_val):
 
 
 def train_model():
-    # 1. load data and split 70 / 15 / 15 (train / validation / test)
+    # 1. load data, save the clean version, and split 70 / 15 / 15
     df = load_data()
+    save_processed_data(df)   # keep a record of the cleaned dataset
     X, y = get_X_y(df)
     X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.30, random_state=42)
     X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.50, random_state=42)
