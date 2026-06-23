@@ -42,13 +42,19 @@ Three linear models were compared, each logged as an MLflow run. For Ridge and L
 
 *Figure 1. Validation RMSE and R² for the three models. The plain LinearRegression collapses (negative R²) while the regularized models perform well.*
 
-![MLflow experiments](images/mlflow_experiments.png)
+The following screenshots show each run logged in MLflow, with its parameters (model, alpha) and metrics (val_rmse, val_mae, val_r2).
 
-*Figure 2. The three runs registered in MLflow with their parameters and metrics.*
+![MLflow LinearRegression run](images/mlflow_linearregression.png)
 
-![MLflow Lasso run](images/mlflow_lasso_run.png)
+*Figure 2. LinearRegression run in MLflow: val_r2 = -2.65 (the model is unstable with the polynomial features).*
 
-*Figure 3. Detail of the selected run (Lasso): logged parameters (model, alpha) and metrics.*
+![MLflow Ridge run](images/mlflow_ridge.png)
+
+*Figure 3. Ridge run in MLflow (alpha = 0.01): val_rmse = 698.8, val_r2 = 0.883.*
+
+![MLflow Lasso run](images/mlflow_lasso.png)
+
+*Figure 4. Lasso run in MLflow (alpha = 0.1): val_rmse = 698.4, val_r2 = 0.883. This is the selected model.*
 
 ## 3.4. Chosen model and key finding
 
