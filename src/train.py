@@ -1,3 +1,9 @@
+# This is my training script. I split the data 70/15/15, then I compare three
+# linear models (LinearRegression, Ridge and Lasso) and log every run to MLflow.
+# I pick the best one by validation RMSE, retrain it on train+validation, check
+# it on the test set, and save the winning pipeline to models/best_model.pkl
+# so the prediction script can use it.
+
 import pandas as pd
 import numpy as np
 import joblib

@@ -1,3 +1,9 @@
+# In this file I prepare the data for the model. I load the raw daily data,
+# drop the columns I can't use, and build the transformer that turns the 11
+# features into numbers the model understands: one-hot encoding for the
+# categories and polynomial terms for the weather numbers. I don't train
+# anything here - I use these functions later in train.py.
+
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, PolynomialFeatures
