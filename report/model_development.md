@@ -82,6 +82,8 @@ This retrains the model and generates the trained model file:
 
 The trained model is uploaded as a GitHub Actions artifact.
 
+![CD workflow success](images/cd_workflow_success.png)
+
 ### On-demand prediction workflow
 
 The on-demand workflow is triggered manually from GitHub Actions. It first trains the model, then runs:
