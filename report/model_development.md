@@ -61,3 +61,43 @@ The chosen model (Lasso) was retrained on train + validation (85%) and evaluated
 - **Test RMSE ≈ 667 bikes/day** (better than the validation RMSE, indicating no overfitting).
 
 With an average demand of ~4500 rentals/day, this is roughly a 15% typical error — a strong result for a simple, interpretable linear model.
+
+## 3.6. MLOps workflows
+
+The project includes three GitHub Actions workflows: CI, CD, and on-demand prediction.
+
+### CI workflow
+
+The CI workflow runs when a pull request is opened against the main branch. It installs the project dependencies and checks that the main Python files compile correctly. This helps us catch simple code errors before merging changes into main.
+
+### CD workflow
+
+The CD workflow runs when changes are pushed to the main branch. It installs the dependencies and runs:
+
+`python main.py`
+
+This retrains the model and generates the trained model file:
+
+`models/best_model.pkl`
+
+The trained model is uploaded as a GitHub Actions artifact.
+
+### On-demand prediction workflow
+
+The on-demand workflow is triggered manually from GitHub Actions. It first trains the model, then runs:
+
+`python predict.py`
+
+The prediction script reads the input file:
+
+`batch_prediction_dataset/on_demand_dataset.csv`
+
+It then creates the output file:
+
+`batch_prediction_dataset/predictions.csv`
+
+The output file includes a new column called `predicted_cnt`, which contains the predicted daily bike rental demand.
+
+![On-demand workflow success](images/on_demand_workflow_success.png)
+
+![Prediction output](images/prediction_output.png)
