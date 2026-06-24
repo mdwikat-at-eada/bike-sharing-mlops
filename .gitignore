@@ -219,4 +219,5 @@ __marimo__/
 
 # Generated project artifacts
 mlruns/
+mlflow.db
 models/*.pkl

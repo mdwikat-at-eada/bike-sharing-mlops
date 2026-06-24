@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Check Python files
+      - name: Check Python files compile
         run: |
           python -m py_compile main.py
           python -m py_compile predict.py
@@ -31,3 +31,6 @@ jobs:
           python -m py_compile src/train.py
           python -m py_compile src/evaluate.py
           python -m py_compile src/data_preprocessing.py
+
+      - name: Run tests
+        run: pytest -q
