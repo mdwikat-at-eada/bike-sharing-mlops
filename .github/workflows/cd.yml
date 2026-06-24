@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   train-model:
     runs-on: ubuntu-latest
@@ -27,8 +30,19 @@ jobs:
         run: python main.py
 
       - name: Check model file
+        run: test -f models/best_model.pkl
+
+      - name: Commit trained model to models/
         run: |
-          test -f models/best_model.pkl
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f models/best_model.pkl
+          if git diff --staged --quiet; then
+            echo "Model unchanged; nothing to commit."
+          else
+            git commit -m "ci: update trained model [skip ci]"
+            git push
+          fi
 
       - name: Upload trained model
         uses: actions/upload-artifact@v4
