@@ -21,6 +21,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+
+      - name: Train model
+        run: python main.py
+          
       - name: Run batch prediction
         run: python predict.py
 
